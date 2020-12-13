@@ -1,0 +1,6 @@
+package windows
+
+
+func Winrm(){
+
+}

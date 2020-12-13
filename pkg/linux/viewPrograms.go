@@ -3,25 +3,27 @@ package linux
 import (
 	"fmt"
 	"os/exec"
+	"strings"
 )
 
-func viewPrograms(os string) string {
-	var programs string
+func viewPrograms(os string) ([]string, error) {
+	var allPrograms string
 	switch os {
 	case "RedHat":
 		command := exec.Command("yum", "list",  "installed")
 		output, err := command.CombinedOutput()
-		programs = fmt.Sprintln(string(output))
+		allPrograms = fmt.Sprintln(string(output))
 		if err == nil {
-			return err.Error()
+			return nil,err
 		}
 	case "Debian":
 		command := exec.Command("apt","list", "--installed")
 		output, err := command.CombinedOutput()
-		programs = fmt.Sprintln(string(output))
+		allPrograms = fmt.Sprintln(string(output))
 		if err != nil {
-			return err.Error()
+			return nil, err
 		}
 	}
-	return programs
+	programs := strings.Split(allPrograms, "\n")
+	return programs[1:], nil
 }
