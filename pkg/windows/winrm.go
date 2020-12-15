@@ -1,6 +1,0 @@
-package windows
-
-
-func Winrm(){
-
-}
