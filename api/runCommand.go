@@ -6,7 +6,7 @@ import (
 )
 
 
-
+// The PUT request function that runs the command
 func Run(c *gin.Context){
 	c.Request.ParseMultipartForm(1000)
 	ip := c.Request.PostForm["ip"][0]

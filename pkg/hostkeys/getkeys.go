@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 )
-
+// The function gets a hostkey from the local windows server
 func GetHostKey(host string) (ssh.PublicKey, error) {
 	file, err := os.Open(filepath.Join(os.Getenv("HOME"), ".ssh", "known_hosts"))
 	if err != nil {

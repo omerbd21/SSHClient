@@ -9,6 +9,8 @@ import (
 	"os"
 )
 
+
+// The function runs a command on a remote linux host using ssh.
 func RunCommand(ip string, command string ) string {
 	hostKey, err := hostkeys.GetHostKey(ip)
 	key, err := ioutil.ReadFile(os.Getenv("HOME")+"\\.ssh\\id_rsa")
