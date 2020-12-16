@@ -28,12 +28,17 @@ export default function BasicTextFields() {
     const [output, setOutput] = useState("");
     const [isSending, setIsSending] = useState(false);
     const sendRequest = useCallback(async () => {
-        if (isSending)
-            return
-        setIsSending(true)
-        await sendCommand().then(result => setOutput(result))
-        setIsSending(false)
-    }, [isSending])
+        if (ip === "" || command ==="") {
+            alert("You didn't enter both values")
+        }
+        else {
+            if (isSending)
+                return
+            setIsSending(true)
+            await sendCommand(ip, command).then(result => setOutput(result))
+            setIsSending(false)
+        }
+    }, [isSending, command, ip])
     return (
             <div className={classes.formGroup}>
                 <div><Paper className={classes.paper}>
@@ -45,7 +50,9 @@ export default function BasicTextFields() {
                         Get Output
                     </Button></div>
                 </Paper></div>
-                <div><Paper className={classes.paper}>{output ? output["output"] : "Loading"}</Paper></div>
+                <div><Paper className={classes.paper}>
+                    <h1>{ip}:</h1>
+                    {output ? output["output"] : "Loading"}</Paper></div>
             </div>
     );
 }

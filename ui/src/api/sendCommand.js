@@ -1,4 +1,4 @@
-async function sendCommand() {
+async function sendCommand(ip, command) {
    // Default options are marked with *
     return await fetch("http://localhost:8080/runcommand", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -9,7 +9,7 @@ async function sendCommand() {
         },
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify({"ip": "192.168.2.148", "command": "ls"}) // body data type must match "Content-Type" header
+        body: JSON.stringify({"ip": ip, "command": command}) // body data type must match "Content-Type" header
     }).then( async response => await response.json())
 }
 export default sendCommand;
