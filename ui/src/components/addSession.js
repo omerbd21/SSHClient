@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function BasicTextFields() {
+export default function SSHPrompt() {
     const classes = useStyles();
     const [ip, setIp] = useState("");
     const [command, setCommand] = useState("");
@@ -51,7 +51,7 @@ export default function BasicTextFields() {
                     </Button></div>
                 </Paper></div>
                 <div><Paper className={classes.paper}>
-                    <h1>{ip}:</h1>
+                    <h1>{ip}: </h1>
                     {output ? output["output"] : "Loading"}</Paper></div>
             </div>
     );

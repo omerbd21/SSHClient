@@ -1,12 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
-import Car from "./components/addSession";
+import Session from "./components/addSession";
+import React from "react";
 
 function App() {
   return (
     <div className="App">
         <h1>SSH Prompt</h1>
-      <Car />
+      <Session />
     </div>
   );
 }
