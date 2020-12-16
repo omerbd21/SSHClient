@@ -1,22 +1,24 @@
 import React, {useCallback, useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import sendCommand from "../api/sendCommand";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
     formGroup: {
         display: 'flex',
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         height: '100vh',
-    }
+    },
+    paper: {
+        height: "30vh",
+        width: "100vh",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 }));
 
 export default function BasicTextFields() {
@@ -33,20 +35,17 @@ export default function BasicTextFields() {
         setIsSending(false)
     }, [isSending])
     return (
-        <form className={classes.root} noValidate autoComplete="off">
-            <span>
-                <div className={classes.formGroup}>
-                <TextField onChange={(event) => setIp(event.target.value)}
-                           value={ip} id="standard-basic" label="IP" />
-                <TextField onChange={(event) => setCommand(event.target.value)}
-                           value={command} id="standard-basic" label="Command" />
-                <Button onClick={sendRequest} variant="contained" color="primary">
-                    Primary
-                </Button>
-                    <h2>{output ? output["output"]: "Loading"}</h2>
+            <div className={classes.formGroup}>
+                <div><Paper className={classes.paper}>
+                    <div><TextField onChange={(event) => setIp(event.target.value)}
+                                     value={ip} id="standard-basic" label="IP"/>
+                        <TextField onChange={(event) => setCommand(event.target.value)}
+                                   value={command} id="standard-basic" label="Command"/></div>
+                    <div><Button onClick={sendRequest} variant="contained" color="primary">
+                        Get Output
+                    </Button></div>
+                </Paper></div>
+                <div><Paper className={classes.paper}>{output ? output["output"] : "Loading"}</Paper></div>
             </div>
-            </span>
-
-        </form>
     );
 }
