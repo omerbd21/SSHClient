@@ -35,7 +35,9 @@ func RunCommand(ip string, command string ) map[string]string {
 	// Connect to ssh server
 	conn, err := ssh.Dial("tcp", ip+":22", config)
 	if err != nil {
-		log.Fatal("unable to connect: ", err)
+		json := make(map[string]string)
+		json["output"] = "unreachable machine"
+		return json
 	}
 	defer conn.Close()
 	// Create a session
