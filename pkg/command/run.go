@@ -11,7 +11,7 @@ import (
 
 
 // The function runs a command on a remote linux host using ssh.
-func RunCommand(ip string, command string ) string {
+func RunCommand(ip string, command string ) map[string]string {
 	hostKey, err := hostkeys.GetHostKey(ip)
 	key, err := ioutil.ReadFile(os.Getenv("HOME")+"\\.ssh\\id_rsa")
 	if err != nil {
@@ -52,7 +52,9 @@ func RunCommand(ip string, command string ) string {
 	if err != nil{
 		log.Fatal(err)
 	}
-	return output.String()
+	json := make(map[string]string)
+	json["output"] = output.String()
+	return json
 
 
 }
